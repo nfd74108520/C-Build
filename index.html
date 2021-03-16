@@ -10,7 +10,7 @@
     <style>
         .wrap{
             width: 1200px;
-            background-color: rgba(255,255,255,0);
+            background-color: rgba(250,250,250,0.5);
             margin: auto;
             display:flex;
         }
@@ -20,6 +20,26 @@
         }
         .box img{
             width: 100%;
+        }
+        .food{
+            position: relative;
+        }
+        .food::before{
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            bottom: 0;
+            content: "加入購物車";
+            text-align: center;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            visibility: hidden;
+        }
+        .food:hover::before{
+            visibility:visible;
+        }
+        .food img:hover{
+            cursor:pointer;
         }
         span{
             font-size: 14px;
@@ -34,106 +54,108 @@
 <body>
     <div class="wrap">
         <div class="box">
-            <img src="./img/1800x (2).webp" alt="" class="top">
+            <div class="top"><img src="./img/1800x (2).webp" alt=""></div>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/800x (4).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (4).webp" alt=""></div>
             <span>賈以食日-拌雙粉 醋香豆瓣（1袋/3入）<p class="discount">NT$249</p><p class="price">NT$230</p></span>
         </div>
         <div class="box">
-            <img src="./img/800x (5).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (5).webp" alt=""></div>
             <span>賈以食日-拌雙粉 醋香豆瓣（16袋/48入）<p class="discount">NT$3,984</p><p class="price">NT$3,580</p></span>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/1800x (1).webp" alt="" class="top">
+            <div class="food"><img src="./img/1800x (1).webp" alt=""></div>
             <span>賈以食日-角落小夥伴 寶貝麵三入綜合提袋組<p class="discount">NT$530</p><p class="price">NT$499</p></span>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/600x (3).webp" alt="" class="food">
+            <div class="food"><img src="./img/600x (3).webp" alt=""></div>
             <span>賈以食日-角落小夥伴 寶貝麵（經典原味）<p class="price">NT$159</p></span>
         </div>
         <div class="box">
-            <img src="./img/600x (4).webp" alt="" class="food">
+            <div class="food"><img src="./img/600x (4).webp" alt=""></div>
             <span>賈以食日-角落小夥伴 寶貝麵（綜合蔬菜）<p class="price">NT$159</p></span>
         </div>
         <div class="box">
-            <img src="./img/600x (5).webp" alt="" class="food">
+            <div class="food"><img src="./img/600x (5).webp" alt=""></div>
             <span>賈以食日-角落小夥伴 寶貝麵（南瓜地瓜）<p class="price">NT$159</p></span>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/800x (6).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (6).webp" alt=""></div>
             <span>賈以食日-干貝鍋燒意麵<p class="discount">NT$150</p><p class="price">NT$138</p></span>
         </div>
         <div class="box">
-            <img src="./img/800x.webp" alt="" class="food">
+            <div class="food"><img src="./img/800x.webp" alt=""></div>
             <span>賈以食日-干貝鍋燒意麵（1箱/16盒）<p class="discount">NT$2,400</p><p class="price">NT$2,080</p></span>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/800x (1).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (1).webp" alt=""></div>
             <span>賈以食日-泰式酸辣粉（1盒/3入）<p class="discount">NT$238</p><p class="price">NT$220</p></span>
         </div>
         <div class="box">
-            <img src="./img/800x (2).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (2).webp" alt=""></div>
             <span>賈以食日–泰式酸辣粉（1箱/16盒）<p class="discount">NT$3,808</p><p class="price">NT$3,360</p></span>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/1800x (3).webp" alt="" class="top">
+            <div class="top"><img src="./img/1800x (3).webp" alt=""></div>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/600x.webp" alt="" class="food">
+            <div class="food"><img src="./img/600x.webp" alt=""></div>
             <span>賈以食日-麻花麵（1袋/4入)<p class="price">NT$268</p></span>
         </div>
         <div class="box">
-            <img src="./img/600x (1).webp" alt="" class="food">
+            <div class="food"><img src="./img/600x (1).webp" alt=""></div>
             <span>賈以食日-燒椒麵（1袋/4入）<p class="price">NT$268</p></span>
         </div>
         <div class="box">
-            <img src="./img/600x (2).webp" alt="" class="food">
+            <div class="food"><img src="./img/600x (2).webp" alt=""></div>
             <span>賈以食日-麻薑麵（1袋/4入)<p class="price">NT$268</p></span>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/800x (7).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (7).webp" alt=""></div>
             <span>賈以食日-麻辣鴨血冬粉<p class="price">NT$159</p></span>
         </div>
         <div class="box">
-            <img src="./img/800x (8).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (8).webp" alt=""></div>
             <span>賈以食日-麻辣鴨血冬粉（1箱/20盒）<p class="price">NT$3,180</p></span>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/800x (3).webp" alt="" class="food">
+            <div class="food"><img src="./img/800x (3).webp" alt=""></div>
             <span>賈以食日-雪莓餅 (期間限定，售完為止)<p class="discount">NT$250</p><p class="price">NT$230</p></span>
         </div>
         <div class="box">
-            <img src="" alt="" class="food">
-            <span></span>
+            <div class="food">
+                <img src="" alt="">
+                <span></span>
+            </div>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/1800x (4).webp" alt="" class="top">
+            <div class="top"><img src="./img/1800x (4).webp" alt=""></div>
         </div>
     </div>
     <div class="wrap">
         <div class="box">
-            <img src="./img/1800x.webp" alt="" class="top" style="opacity: 0.5;">
+            <div class="food"><img src="./img/1800x.webp" alt="" style="opacity: 0.5;"></div>
             <span>賈以食日-2021 HAPPY 牛 YEAR 福箱<p class="price">NT$999</p></span>
         </div>
     </div>
