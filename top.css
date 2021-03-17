@@ -1,0 +1,36 @@
+/* .show1{
+    display: none;
+}
+.show2{
+    display: none;
+}
+.show3{
+    display: none;
+}
+.show4{
+    display: none;
+}
+.show5{
+    display: none;
+}
+.show6{
+    display: none;
+}
+.show7{
+    display: none;
+}
+.show8{
+    display: none;
+} */
+
+.show_slider{
+    
+}
+
+.show_slider div{
+    width: 0;
+}
+
+.show_slider div{
+    animation: slider 3s infinite;
+}
