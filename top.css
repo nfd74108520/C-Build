@@ -23,12 +23,12 @@
     display: none;
 } */
 
-.show_slider{
+/* .show_slider{
     
-}
+} */
 
 .show_slider div{
-    width: 0;
+    display: none;
 }
 
 .show_slider div{
