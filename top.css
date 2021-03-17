@@ -31,6 +31,6 @@
     display: none;
 }
 
-.show_slider div{
-    animation: slider 3s infinite;
+.show_slider div:nth-child(1){
+    display: block;
 }
