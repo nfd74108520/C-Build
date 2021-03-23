@@ -137,6 +137,9 @@
     bottom: 0;
     margin: auto;
     z-index: -1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 .intro-box .intro-index:nth-child(1) .photo{
     background-image: url(./img3/advantage-1-video-button-bg.png);
@@ -153,9 +156,11 @@
 .intro-box .intro-index:nth-child(5) .photo{
     background-image: url(./img3/advantage-5-video-button-bg.png);
 }
-.intro-index .photo img{
-    width: 50px;
-    height: 30px;
+.intro-index .photo::after{
+    content: url(./img3/video-icon.png);
+    /* position: absolute;
+    right: -10px;
+    top: 40%; */
 }
 .intro-index .content{
     background-color: #eee;
@@ -201,17 +206,14 @@
     padding: 2px 8px;
     border-radius: 5%;
 }
-.intro-rev{
+.rev{
     flex-direction: row-reverse;
 }
-.intro-rev .back-box{
+.rev .back-box{
     position: absolute;
     right: 20%;
 }
-.intro-rev .photo{
+.rev .photo{
     margin: 0;
     top: 15%;
-}
-.intro-rev .title-num{
-    order: 1;
 }
