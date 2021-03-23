@@ -1,0 +1,217 @@
+/* .brand-show{
+    background-image: url();
+    width: 100%;
+    height: 85vh;
+} */
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.brand-intro{
+    width: 65%;
+    /* height: 4000px; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.intro-title{
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+    margin: 20px 0;
+}
+.intro-title span{
+    width: 38px;
+    height: 4px;
+    left: 0;
+    right: 0;
+    margin: 18px auto 0;
+    background-color: #000000;
+    position: absolute;
+}
+.intro-row-navbar{
+    width: 100%;
+    margin: 0 0 80px;
+    display: flex;
+    justify-content: space-between;
+}
+.intro-row-navbar .intro-navbox{
+    position: relative;
+    width: 19%;
+    text-align: center;
+    font-size: 18px;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: middle;
+    border: 1px dashed rgba(0, 0, 0, 0.3);
+    border-bottom: none;
+}
+.intro-row-navbar .intro-navbox h3{
+    font-weight: lighter;
+}
+.intro-row-navbar .intro-navbox h3::before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ae0014;
+    transition: 0.2s;
+}
+.intro-row-navbar .intro-navbox:hover h3::before{
+    cursor: pointer;
+    height: 100%;
+    z-index: -1;
+}
+.intro-row-navbar .intro-navbox:hover h3{
+    color:white;
+}
+.intro-index{
+    width: 100%;
+    height: 800px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+.intro-index .about{
+    color:white;
+    width: 40%;
+    height: 50%;
+}
+.intro-index .about .title{
+    display: flex;
+    background-color: darkred;
+    width: 100%;
+    height: 35%;
+}
+.intro-index .about .title :first-child{
+    width: 33.33%;
+    font-size: 100px;
+    transform: rotate(0.25turn);
+}
+.intro-index .about .title :last-child{
+    width: 66.67%;
+    font-size: 55px;
+}
+.intro-index .about .title-index{
+    display: flex;
+    background-color: black;
+    width: 100%;
+    height: 65%;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.intro-index .about .title-index p{
+    font-size: 25px;
+    margin: 10px 0;
+}
+.intro-index .about .title-index span{
+    font-size: 20px;
+}
+.intro-index .back-box{
+    width: 45%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 50px 0;
+    z-index: -2;
+}
+.intro-index .photo{
+    width: 70%;
+    height: 55%;
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -1;
+}
+.intro-box .intro-index:nth-child(1) .photo{
+    background-image: url(./img3/advantage-1-video-button-bg.png);
+}
+.intro-box .intro-index:nth-child(2) .photo{
+    background-image: url(./img3/advantage-2-video-button-bg.png);
+}
+.intro-box .intro-index:nth-child(3) .photo{
+    background-image: url(./img3/advantage-3-video-button-bg.png);
+}
+.intro-box .intro-index:nth-child(4) .photo{
+    background-image: url(./img3/advantage-4-video-button-bg.png);
+}
+.intro-box .intro-index:nth-child(5) .photo{
+    background-image: url(./img3/advantage-5-video-button-bg.png);
+}
+.intro-index .photo img{
+    width: 50px;
+    height: 30px;
+}
+.intro-index .content{
+    background-color: #eee;
+    width: 75%;
+    padding: 10px 20px;
+    margin: 10px 0;
+}
+.intro-index .content li{
+    text-indent:-1em;
+    padding-left: 2em;
+}
+.intro-index .content li::before{
+    height: 5px;
+    content: '•';
+    color: red;
+    display: inline-block;
+    margin: 0 10px;
+}
+.content .content-title{
+    display: flex;
+    color:darkred;
+    width: 100%;
+    font-weight: 800;
+    margin: 10px 0;
+    align-items: center;
+}
+.content .content-title p{
+    display: inline-block;
+}
+.content .content-title span{
+    display: inline-block;
+    width: 400px;
+    height: 1px;
+    background-color: darkred;
+    margin-left: 5px;
+}
+.content h4{
+    background-color: #000;
+    opacity: 0.8;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 5%;
+}
+.intro-rev{
+    flex-direction: row-reverse;
+}
+.intro-rev .back-box{
+    position: absolute;
+    right: 20%;
+}
+.intro-rev .photo{
+    margin: 0;
+    top: 15%;
+}
+.intro-rev .title-num{
+    order: 1;
+}
