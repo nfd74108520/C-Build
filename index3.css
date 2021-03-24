@@ -118,9 +118,11 @@
 .intro-index .about .title-index p{
     font-size: 25px;
     margin: 10px 0;
+    font-weight: 900;
 }
 .intro-index .about .title-index span{
     font-size: 20px;
+    font-weight: 100;
 }
 .intro-index .back-box{
     width: 45%;
