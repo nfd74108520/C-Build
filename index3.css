@@ -158,6 +158,13 @@
 }
 .intro-index .photo::after{
     content: url(./img3/video-icon.png);
+    position: relative;
+}
+.intro-index:nth-child(odd) .photo::after{
+    right: -5px;
+}
+.intro-index:nth-child(even) .photo::after{
+    left: -5px;
 }
 .intro-index .content{
     background-color: #eee;

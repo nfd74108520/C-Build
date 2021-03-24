@@ -4,7 +4,7 @@
     left: -150px;
     opacity: 0;
 }
-.intro-box:hover .intro-index:nth-child(odd) .about{
+.intro-box .intro-index:nth-child(odd):hover .about{
     opacity: 1;
     left: 0;
 }
@@ -15,7 +15,7 @@
     right: -150px;
     opacity: 0;
 }
-.intro-box:hover .intro-index:nth-child(odd) .back-box{
+.intro-box .intro-index:nth-child(odd):hover .back-box{
     opacity: 1;
     right: 0;
 }
@@ -25,7 +25,7 @@
     top: -150px;
     opacity: 0;
 }
-.intro-box:hover .intro-index:nth-child(odd) .photo{
+.intro-box .intro-index:nth-child(odd):hover .photo{
     opacity: 1;
     top: 0;
 }
@@ -36,7 +36,7 @@
     bottom: -150px;
     opacity: 0;
 }
-.intro-box:hover .intro-index:nth-child(odd) .content{
+.intro-box .intro-index:nth-child(odd):hover .content{
     opacity: 1;
     bottom: 0;
 }
@@ -47,7 +47,7 @@
     right: -150px;
     opacity: 0;
 }
-.intro-box:hover .intro-index:nth-child(even) .about{
+.intro-box .intro-index:nth-child(even):hover .about{
     opacity: 1;
     right: 0;
 }
@@ -56,7 +56,7 @@
     opacity: 0;
     right: 0;
 }
-.intro-box:hover .intro-index:nth-child(even) .back-box{
+.intro-box .intro-index:nth-child(even):hover .back-box{
     opacity: 1;
     right: -400px;
 }
@@ -65,7 +65,7 @@
     top: -150px;
     opacity: 0;
 }
-.intro-box:hover .intro-index:nth-child(even) .photo{
+.intro-box .intro-index:nth-child(even):hover .photo{
     opacity: 1;
     top: 15%;
 }
@@ -75,7 +75,7 @@
     bottom: -150px;
     opacity: 0;
 }
-.intro-box:hover .intro-index:nth-child(even) .content{
+.intro-box .intro-index:nth-child(even):hover .content{
     opacity: 1;
     bottom: 10px;
 }
