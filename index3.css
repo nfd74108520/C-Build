@@ -63,7 +63,7 @@
     width: 100%;
     height: 2px;
     background-color: #ae0014;
-    transition: 0.2s;
+    transition: 0.5s;
 }
 .intro-row-navbar .intro-navbox:hover h3::before{
     cursor: pointer;
@@ -97,10 +97,14 @@
     width: 33.33%;
     font-size: 100px;
     transform: rotate(0.25turn);
+    text-align: center;
+    line-height: -15px;
 }
 .intro-index .about .title :last-child{
     width: 66.67%;
     font-size: 55px;
+    line-height: 150px;
+    text-align: center;
 }
 .intro-index .about .title-index{
     display: flex;
