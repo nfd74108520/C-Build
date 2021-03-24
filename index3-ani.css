@@ -22,7 +22,7 @@
 
 .intro-box .intro-index:nth-child(odd) .photo{
     transition: 1.2s;
-    top: -150px;
+    top: -300px;
     opacity: 0;
 }
 .intro-box .intro-index:nth-child(odd):hover .photo{
