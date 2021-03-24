@@ -30,6 +30,16 @@
     top: 0;
 }
 
+.intro-index:nth-child(odd) .photo::after{
+    right: -5px;
+    transition: 1.2s;
+    top: 600px;
+}
+.intro-box .intro-index:nth-child(odd):hover .photo::after{
+    right: -5px;
+    top: 0;
+}
+
 .intro-box .intro-index:nth-child(odd) .content{
     transition: 1.2s;
     position: relative;
@@ -69,6 +79,17 @@
     opacity: 1;
     top: 15%;
 }
+
+.intro-index:nth-child(even) .photo::after{
+    left: -5px;
+    transition: 1.2s;
+    top: 600px;
+}
+.intro-box .intro-index:nth-child(even):hover .photo::after{
+    left: -5px;
+    top: 0;
+}
+
 .intro-box .intro-index:nth-child(even) .content{
     transition: 1.2s;
     position: relative;
