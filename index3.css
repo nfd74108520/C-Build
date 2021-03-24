@@ -215,6 +215,7 @@
 }
 .rev .back-box{
     position: relative;
+    right: -400px;
 }
 .rev .photo{
     margin: 0;
