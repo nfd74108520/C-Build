@@ -1,4 +1,4 @@
-.intro-box .intro-index:nth-child(odd) .about{
+/* .intro-box .intro-index:nth-child(odd) .about{
     transition: 1.2s;
     position: relative;
     left: -150px;
@@ -99,4 +99,4 @@
 .intro-box .intro-index:nth-child(even):hover .content{
     opacity: 1;
     bottom: 10px;
-}
+} */
