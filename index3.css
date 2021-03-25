@@ -403,14 +403,24 @@
     padding: 2px 8px;
     border-radius: 5%;
 }
-.rev{
+input.rev-btn{
+    position: fixed;
+    top: 40%;
+    left: 10%;
+}
+input.rev-btn::after{
+    content: '反轉效果';
+    position: relative;
+    top: 15px;
+}
+input.rev-btn:checked + .intro-box .rev{
     flex-direction: row-reverse;
 }
-.rev .back-box{
+input.rev-btn:checked + .intro-box .rev .back-box{
     position: relative;
     right: -400px;
 }
-.rev .photo{
+input.rev-btn:checked + .intro-box .rev .photo{
     margin: 0;
     top: 15%;
 }
