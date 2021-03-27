@@ -8,6 +8,7 @@ request.onload = function() {
 
     console.log(request.responseText);
   }
+  console.log("George");
 };
 request.send();
 
