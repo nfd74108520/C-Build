@@ -1,4 +1,16 @@
 let container = document.getElementById('container');
+let num = 5;
+
+var xhr = new XMLHttpRequest();
+
+xhr.onload = function(){
+    if(xhr.status == 200){
+        container.innerHTML = xhr.responseText;
+    }
+}
+
+xhr.open('GET', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png', true);
+xhr.send(null);
 
 window.onload = setPokemon();
 
