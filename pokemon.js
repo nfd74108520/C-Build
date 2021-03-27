@@ -9,7 +9,7 @@ xhr.onload = function(){
     }
 }
 
-xhr.open('GET', 'http://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png', true);
+xhr.open('GET', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png', true);
 xhr.send(null);
 
 window.onload = setPokemon();
