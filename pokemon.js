@@ -1,17 +1,13 @@
 let container = document.getElementById('container');
-let num = 5;
 
-var request = new XMLHttpRequest();
-request.open('GET', `https://tw.portal-pokemon.com/play/pokedex/001`, true);
-console.log("George");
-request.onload = function() {
-  if (request.status >= 200 && request.status < 400) {
-
-    console.log(request.responseText);
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png', true);
+xhr.onload = function() {
+  if (xhr.statusCode == 200) {
+    console.log('success');
   }
-  console.log("George");
 };
-request.send();
+xhr.send();
 
 window.onload = setPokemon();
 
