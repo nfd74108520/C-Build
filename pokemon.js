@@ -3,7 +3,7 @@ let container = document.getElementById('container');
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png', true);
 xhr.onload = function() {
-  if (xhr.statusCode == 200) {
+  if (xhr.status == 200) {
     console.log('success');
   }
 };
