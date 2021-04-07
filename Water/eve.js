@@ -10,24 +10,19 @@ window.onload = function () {
 
     let item = data[i];
 
-    let name = item.children[0].innerText;
-    let svg = item.children[1].innerHTML;
-    let volumn = item.children[2].innerText;
-    let dueDay = item.children[4].innerText;
-
     for (let j = 0; j < 5; j++) {
       let th = document.createElement("th");
 
       if (j == 0) {
         th.innerText = i + 1;
       } else if (j == 1) {
-        th.innerText = name;
+        th.innerText = item.children[0].innerText;
       } else if (j == 2) {
-        th.innerHTML = `<svg>${svg}</svg>`;
+        th.innerHTML = `<svg>${item.children[1].innerHTML}</svg>`;
       } else if (j == 3) {
-        th.innerText = volumn;
+        th.innerText = item.children[2].innerText;
       } else if (j == 4) {
-        th.innerText = dueDay;
+        th.innerText = item.children[4].innerText;
       }
       tr.appendChild(th);
     }
