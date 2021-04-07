@@ -1,13 +1,9 @@
-body{
-    
-}
-
 .container-fluid{
     background-color: #2b3238;
     color: #fff;
     height: 90vh;
 }
 
-.container .row:first-child p{
+.container-fluid .row:first-child p{
     color: #1a81fd;
 }
