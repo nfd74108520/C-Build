@@ -12,35 +12,61 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./1.css" />
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row justify-content-center">
-        <div class="col-4 bg-info">
+    <div class="container-fluid d-flex flex-column justify-content-evenly">
+      <div class="row justify-content-evenly mt-5">
+        <div class="col-4">
           <p>GET IN TOUCH</p>
           <h3>Contact Details</h3>
         </div>
-        <div class="col-5 bg-warning">
+        <div class="col-5">
           <p>CONTACT US</p>
           <h3>Drop Us A Line</h3>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-4 bg-warning">
-          <p>
+      <div class="row justify-content-evenly mt-5 mb-5">
+        <div class="col-4">
+          <p class="mb-5">
             If you are interested in working with us then please drop us a line,
             we would love to hear from you.
           </p>
-          <p>121 Wallstreet Street, New York , USA</p>
-          <p><a href="">info@imperion.com</a></p>
-          <p><a href="">+800 1234 56 78</a></p>
+          <p>
+            <i class="fas fa-map-marker-alt me-4 text-info"></i>121 Wallstreet
+            Street, New York , USA
+          </p>
+          <p>
+            <a href="" class="text-decoration-none text-white"
+              ><i class="far fa-envelope me-4 text-info"></i
+              >info@imperion.com</a
+            >
+          </p>
+          <p>
+            <a href="" class="text-decoration-none text-white"
+              ><i class="fas fa-phone-volume me-4 text-info"></i>+800 1234 56
+              78</a
+            >
+          </p>
         </div>
-        <div class="col-5 d-flex flex-column bg-info">
-          <input type="text" placeholder="Name" />
-          <input type="text" placeholder="Name" />
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-          <button>SEND MESSAGE</button>
+        <div class="col-5 d-flex flex-column">
+          <input type="text" placeholder="Name*" class="mb-5 bg-custom border-0 border-bottom text-white pb-3" />
+          <input type="text" placeholder="E-mail*" class="mb-5 bg-custom border-0 border-bottom text-white pb-3" />
+          <textarea
+            name=""
+            id=""
+            cols="20"
+            rows="5"
+            placeholder="Message"
+            class="mb-5 bg-custom border-0 border-bottom text-white pb-3"
+          ></textarea>
+          <button type="button" class="btn btn-primary">SEND MESSAGE</button>
         </div>
       </div>
     </div>

@@ -1,52 +1,58 @@
-// let h1 = document.createElement("h1");
-// h1.innerText = "DOM";
-// document.body.appendChild(h1);
+var list = [
+  { Item: "啤酒", Type: "喝的" },
+  { Item: "汽水", Type: "喝的" },
+  { Item: "火鍋", Type: "吃的" },
+  { Item: "燒烤", Type: "吃的" },
+  { Item: "冰淇淋", Type: "吃的" },
+];
 
-// let div = document.createElement("div");
+// console.log(list.find((x) => x.Type == "吃的").Item);
 
-// let list = ["window", "document", "html"];
+let r = list.filter((x) => x.Type == "吃的");
+// r.forEach((x) => console.log(x.Item));
 
-// for (let i = 0; i < 3; i++) {
-//   let p = document.createElement("p");
-//   p.innerText = list[i];
-//   div.appendChild(p);
-// }
+let r5 = list.map((x) => {
+  return {
+    Id: list.length - list.indexOf(x),
+    Name: x.Item,
+  };
+});
 
-// document.body.appendChild(div);
+// console.log(r5);
 
-// let ul = document.createElement("ul");
-// let lis = ["window", "document", "html"];
+var nums = [10000, 10, 100, 1, 101];
+let r7 = nums.sort((a, b) => b - a);
 
-// lis.forEach((item) => {
-//   let li = document.createElement("li");
-//   li.innerText = item;
-//   ul.appendChild(li);
-// });
+// console.log(r7);
 
-// document.body.appendChild(ul);
+Array.prototype.groupBy = function (prop) {
+  return this.reduce((groups, item) => {
+    const val = item[prop];
+    groups[val] = groups[val] || [];
+    groups[val].push(item);
+    return groups;
+  }, {});
+};
 
-function genUl(liArray) {
-  let ul = document.createElement("ul");
+let r8 = list.groupBy("Type");
+console.log(r8);
 
-  liArray.forEach((item) => {
-    let li = document.createElement("li");
-    li.innerText = item;
-    ul.appendChild(li);
-  });
+// var curAni = [
+//   "鼠",
+//   "牛",
+//   "虎",
+//   "兔",
+//   "龍",
+//   "蛇",
+//   "馬",
+//   "羊",
+//   "猴",
+//   "雞",
+//   "狗",
+//   "豬",
+// ];
+// var ani = ["豬", "龍", "鼠", "狗", "羊", "雞", "馬"];
 
-  return ul;
-}
+// let sorAni = ani.sort((a, b) => curAni.indexOf(a) - curAni.indexOf(b));
 
-function $g(value) {
-  //判斷是否為id selector
-  if (value.includes("#")) {
-    //回傳Element
-    return document.querySelector(value);
-  }
-  //回傳NodeList集合
-  var nodelist = document.querySelectorAll(value);
-  return nodelist.length == 1 ? nodelist[0] : nodelist;
-}
-
-
-export { $g, genUl };
+// console.log(sorAni);
