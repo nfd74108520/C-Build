@@ -83,6 +83,7 @@ function changeSize() {
     </label>
     `;
     div.addEventListener("click", changeCapacity);
+    div.addEventListener("click", cleanPrice);
     size.appendChild(div);
   });
   phoneEvent();
@@ -149,7 +150,7 @@ function changeColor() {
       <input type="radio" name="color" value="${colorItem.value}"/>
       <span class="color d-flex flex-column align-items-center"
         ><img
-          src="./img/${productNameValue}/${typeNameValue}/color/${colorItem.value}.jfif"
+          src="${colorItem.url}"
           alt=""
           class="w-25"
         />${colorItem.text}</span

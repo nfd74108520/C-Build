@@ -1,16 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
+  <body>
+    <h1>用XMLHttpRequest請求GitHub JSON資料</h1>
 
+    <button id="button1">Request JSON1</button>
+    <button id="button2">Request JSON2</button>
+    <button id="button3">Request JSON3</button>
+    <button id="button4">Request JSON4</button>
+    <button id="btnClear">Clear</button>
+    <div id="msg"></div>
 
-  <script src="./practice.js"></script>
-</body>
+    <script type="module">
+      import { $g } from "./modules/helpers.js";
+      let msg = $g("#msg");
+
+      $g("button").forEach((item) => {
+        item.addEventListener("click", () => {
+          msg.innerText = "";
+        });
+      });
+
+      let btn1 = $g("#button1").addEventListener("click", requestJSON1);
+      let btn2 = $g("#button2").addEventListener("click", requestJSON2);
+      let btn3 = $g("#button3").addEventListener("click", requestJSON3);
+      let btn4 = $g("#button4").addEventListener("click", requestJSON4);
+      $g("#btnClear").addEventListener("click", () => {
+        msg.innerText = "";
+      });
+
+      // const url =
+      // "https://raw.githubusercontent.com/apprunner/FileStorage/master/iPad_DataFixed.json";
+      // const url = 'http://127.0.0.1:5503/XMLHttpRequest/iPad_DataFixed.json';
+
+      const url =
+        "https://raw.githubusercontent.com/apprunner/FileStorage/master/JSON_Array.json";
+      let xhr = new XMLHttpRequest();
+      //Ex1
+      function requestJSON1() {
+        xhr.open("GET", url);
+        xhr.onload = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            let parsed = JSON.parse(this.responseText);
+            parsed.forEach((item) => {
+              let keys = Object.keys(item);
+              keys.forEach((key) => {
+                console.log(item[`${key}`]);
+              });
+              console.log("--------------");
+              for (let i in item) {
+                console.log(i);
+              }
+            });
+          } else {
+            msg.textContent = "發⽣錯誤，HTTP response代碼：" + xhr.status;
+          }
+        };
+        
+        // xhr.open("POST", url);
+        xhr.send();
+      }
+
+      //Ex2
+      function requestJSON2() {}
+
+      //Ex3
+      function requestJSON3() {}
+
+      //Ex4
+      function requestJSON4() {}
+    </script>
+  </body>
 </html>
