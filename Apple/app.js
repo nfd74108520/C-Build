@@ -1,6 +1,7 @@
 let appleProduct = document.querySelectorAll('[name="product"]');
 
 let productPhoto = document.querySelector(".phone-photo>.row");
+let description = document.getElementById("description");
 let typeName = document.getElementById("typeName");
 let typeRow = document.getElementById("type");
 let color = document.getElementById("color");
@@ -20,6 +21,7 @@ appleProduct.forEach((item) => {
     size.innerHTML = "";
     typeName.innerHTML = "";
     productPhoto.innerHTML = "";
+    description.innerHTML = "";
     priceText.innerText = "NT$0";
     taxText.innerText = "含加值型營業稅：約 NT$0*。";
 
@@ -126,6 +128,21 @@ function changePhoneFamily() {
   let div = document.createElement("div");
   div.classList.add("col-10");
   div.appendChild(photoImg);
+
+  description.innerHTML = `
+  <div class="col-4 d-flex flex-column align-items-center">
+    <i class="fab fa-apple fa-2x"></i>
+    <p class="fs-6 fw-light">快速且免額外付費的運送服務</p>
+  </div>
+  <div class="col-4 d-flex flex-column align-items-center">
+    <i class="fas fa-mobile-alt fa-2x"></i>
+    <p class="fs-6 fw-light">免額外付費的個人化解說服務</p>
+  </div>
+  <div class="col-4 d-flex flex-column align-items-center">
+    <i class="fab fa-apple-pay fa-2x"></i>
+    <p class="fs-6 fw-light">免額外付費輕鬆退貨</p>
+  </div>
+  `;
 
   productPhoto.innerHTML = "";
   photoImg.src = `./img/${productNameValue}/${typeNameValue}/family.jfif`;

@@ -476,9 +476,9 @@ let product = {
     },
   },
   Watch: {
-    AppleWatchS6: {},
-    AppleWatchSE: {},
-    AppleWatchS3: {},
-    AppleWatchNike: {},
+    // AppleWatchS6: {},
+    // AppleWatchSE: {},
+    // AppleWatchS3: {},
+    // AppleWatchNike: {},
   },
 };
