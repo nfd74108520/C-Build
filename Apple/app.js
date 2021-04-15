@@ -196,7 +196,3 @@ function changePhoneImg() {
   photoImg.style.width = "100%";
   productPhoto.appendChild(photoImg);
 }
-
-function goBuy() {
-  alert("按屁!");
-}
