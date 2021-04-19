@@ -163,7 +163,6 @@
         let keys = Object.keys(lol.data);
         keys.forEach((item) => {
           let hero = lol.data[item];
-          console.log(hero);
           let cloneContent = card.content.cloneNode(true);
           cloneContent.querySelector("h5").innerText = hero.name;
           cloneContent.querySelector("p").innerText = hero.title;
@@ -179,11 +178,10 @@
             .querySelectorAll(".btn")[1]
             .addEventListener("click", () => {
               let modal = $g("#exampleModal");
-              modal.querySelector("#exampleModalLabel").innerText = "";
+              modal.querySelector("#exampleModalLabel").innerHTML = `
+              <iframe width="120%" src="https://www.youtube.com/embed/kRiCYOJjkVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              `;
               modal.querySelector(".modal-body").innerText = "";
-              let iframe = document.createElement("iframe");
-              iframe.src = "https://youtu.be/kRiCYOJjkVo";
-              modal.querySelector("#exampleModalLabel").appendChild(iframe);
             });
 
           row.append(cloneContent);
