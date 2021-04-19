@@ -4,76 +4,155 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      table,
+      th,
+      td {
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+        border: 3px solid purple;
+      }
+
+      tbody tr:nth-child(odd) {
+        background-color: lightblue;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: aqua;
+      }
+
+      thead th:nth-child(1) {
+        width: 10%;
+        cursor: pointer;
+      }
+
+      thead th:nth-child(2) {
+        width: 10%;
+        cursor: pointer;
+      }
+
+      thead th:nth-child(3) {
+        width: 10%;
+        cursor: pointer;
+      }
+
+      thead th:nth-child(4) {
+        width: 60%;
+      }
+
+      thead th:nth-child(5) {
+        width: 10%;
+      }
+
+      img {
+        width: 100%;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>用XMLHttpRequest請求GitHub JSON資料</h1>
-
-    <button id="button1">Request JSON1</button>
-    <button id="button2">Request JSON2</button>
-    <button id="button3">Request JSON3</button>
-    <button id="button4">Request JSON4</button>
-    <button id="btnClear">Clear</button>
+    <h1></h1>
     <div id="msg"></div>
 
+    <template id="templateTitle">
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </template>
+    <template id="templateRow">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+
+    <script src="./practice.js"></script>
     <script type="module">
-      import { $g } from "./modules/helpers.js";
-      let msg = $g("#msg");
+      import { $g, $c } from "./modules/helpers.js";
 
-      $g("button").forEach((item) => {
-        item.addEventListener("click", () => {
-          msg.innerText = "";
+      let fragment = new DocumentFragment();
+
+      let h1 = $c("h1");
+      h1.textContent = "DocumentFragment";
+      fragment.append(h1);
+      document.body.appendChild(fragment);
+
+      $g("h1").innerText = "Template";
+      $g("#msg").innerText = "模板的應用";
+
+      let productArray = ["iPhone", "iPad", "Mac", "Watch"];
+
+      let ul = $c("ul");
+      productArray.forEach((item) => {
+        let li = $c("li");
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+      document.body.appendChild(ul);
+
+      let table, thead, tbody;
+
+      window.onload = () => {
+        table = $c("table");
+        thead = $c("thead");
+        tbody = $c("tbody");
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        document.body.insertBefore(table, $g("#templateTitle"));
+
+        // const ipads = [
+        //   {
+        //     sku: "MW762",
+        //     price: 10900,
+        //     storage: "32GB",
+        //     description: "10.2 吋iPadWi-Fi機型32GB-⾦⾊"
+        //   },
+        // ];
+
+        let titleArray;
+        let dataArray;
+
+        ipads.forEach((item) => {
+          titleArray = Object.keys(item);
+          dataArray = Object.values(item);
+          addTbody(dataArray);
         });
-      });
 
-      let btn1 = $g("#button1").addEventListener("click", requestJSON1);
-      let btn2 = $g("#button2").addEventListener("click", requestJSON2);
-      let btn3 = $g("#button3").addEventListener("click", requestJSON3);
-      let btn4 = $g("#button4").addEventListener("click", requestJSON4);
-      $g("#btnClear").addEventListener("click", () => {
-        msg.innerText = "";
-      });
+        addThead(titleArray);
 
-      // const url =
-      // "https://raw.githubusercontent.com/apprunner/FileStorage/master/iPad_DataFixed.json";
-      // const url = 'http://127.0.0.1:5503/XMLHttpRequest/iPad_DataFixed.json';
+        function addThead(titleArray) {
+          let titles = $g("templateTitle");
+          let cloneContent = templateTitle.content.cloneNode(true);
+          let ths = cloneContent.querySelectorAll("th");
+          titleArray.forEach((title, index) => {
+            ths[index].innerText = title;
+          });
 
-      const url =
-        "https://raw.githubusercontent.com/apprunner/FileStorage/master/JSON_Array.json";
-      let xhr = new XMLHttpRequest();
-      //Ex1
-      function requestJSON1() {
-        xhr.open("GET", url);
-        xhr.onload = function () {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            let parsed = JSON.parse(this.responseText);
-            parsed.forEach((item) => {
-              let keys = Object.keys(item);
-              keys.forEach((key) => {
-                console.log(item[`${key}`]);
-              });
-              console.log("--------------");
-              for (let i in item) {
-                console.log(i);
-              }
-            });
-          } else {
-            msg.textContent = "發⽣錯誤，HTTP response代碼：" + xhr.status;
-          }
-        };
-        
-        // xhr.open("POST", url);
-        xhr.send();
-      }
+          thead.appendChild(cloneContent);
+        }
 
-      //Ex2
-      function requestJSON2() {}
-
-      //Ex3
-      function requestJSON3() {}
-
-      //Ex4
-      function requestJSON4() {}
+        function addTbody(rowArray) {
+          let templateRow = $g("#templateRow");
+          let cloneContent = templateRow.content.cloneNode(true);
+          let tds = cloneContent.querySelectorAll("td");
+          rowArray.forEach((item, index) => {
+            if (index == 4) {
+              tds[index].innerHTML = `<img src="./${item}" alt="" class="src">`;
+            } else {
+              tds[index].innerText = item;
+            }
+          });
+          tbody.appendChild(cloneContent);
+        }
+      };
     </script>
   </body>
 </html>

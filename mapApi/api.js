@@ -33,7 +33,7 @@ let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 24.760052505061207, lng: 120.95292512434172 },
-    zoom: 15,
+    zoom: 7,
   });
 
   City.forEach((item) => {
