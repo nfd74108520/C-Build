@@ -73,7 +73,7 @@
   <body>
     <div class="container-fluid">
       <div class="jumbotron bg-info">
-        <h1>Lol 角色卡</h1>
+        <h1>LoL 角色卡</h1>
       </div>
 
       <div class="row justify-content-center"></div>
@@ -99,7 +99,7 @@
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
-            影片
+            技能影片
           </button>
         </div>
       </div>
@@ -171,15 +171,26 @@
             .querySelectorAll(".btn")[0]
             .addEventListener("click", () => {
               let modal = $g("#exampleModal");
-              modal.querySelector("#exampleModalLabel").innerText = hero.id;
+              let stats = "";
+              let keys = Object.keys(hero.stats);
+              keys.forEach((item) => {
+                stats += item + " : " + hero.stats[item] + "\n";
+              });
+              modal.querySelector("#exampleModalLabel").innerText =
+                hero.id + " - " + hero.name + "\n" + stats;
               modal.querySelector(".modal-body").innerText = hero.blurb;
             });
           cloneContent
             .querySelectorAll(".btn")[1]
             .addEventListener("click", () => {
               let modal = $g("#exampleModal");
+              let fileName = hero.key.toString().padStart(4, "0");
               modal.querySelector("#exampleModalLabel").innerHTML = `
-              <iframe width="120%" src="https://www.youtube.com/embed/kRiCYOJjkVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <h1>被動 - </h1><iframe width="100%" src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${fileName}/ability_${fileName}_P1.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <h1>Q - </h1><iframe width="100%" src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${fileName}/ability_${fileName}_Q1.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <h1>W - </h1><iframe width="100%" src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${fileName}/ability_${fileName}_W1.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <h1>E - </h1><iframe width="100%" src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${fileName}/ability_${fileName}_E1.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <h1>R - </h1><iframe width="100%" src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${fileName}/ability_${fileName}_R1.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               `;
               modal.querySelector(".modal-body").innerText = "";
             });
