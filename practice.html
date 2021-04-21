@@ -56,10 +56,8 @@
       var canvas = document.getElementById("mycnavas"); //现将图片放上去
       var cxt = mycnavas.getContext("2d");
       var img = new Image();
-      let url =
-        "./dog.jpg";
-      img.src = url + "?" + new Date().getTime();
-      img.crossOrigin = "";
+      let url = "./dog.jpg";
+      img.src = url;
       window.onload = function () {
         cxt.drawImage(img, 0, 0, 300, 300); //画好图片的位置
       };
