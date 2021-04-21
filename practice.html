@@ -3,154 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-      table,
-      th,
-      td {
-        table-layout: fixed;
-        width: 100%;
-        border-collapse: collapse;
-        border: 3px solid purple;
+      body {
+        text-align: center;
       }
 
-      tbody tr:nth-child(odd) {
-        background-color: lightblue;
+      canvas {
+        border: 1px solid;
       }
 
-      tbody tr:nth-child(even) {
-        background-color: aqua;
+      .newcanvas {
+        width: 316px;
+        height: 316px;
+        margin: auto;
       }
 
-      thead th:nth-child(1) {
-        width: 10%;
+      .newpohoto,
+      .download {
+        width: 300px;
+        height: 40px;
+        line-height: 40px;
+        margin: auto;
+        background-color: cornflowerblue;
+        border-radius: 5px;
         cursor: pointer;
-      }
-
-      thead th:nth-child(2) {
-        width: 10%;
-        cursor: pointer;
-      }
-
-      thead th:nth-child(3) {
-        width: 10%;
-        cursor: pointer;
-      }
-
-      thead th:nth-child(4) {
-        width: 60%;
-      }
-
-      thead th:nth-child(5) {
-        width: 10%;
-      }
-
-      img {
-        width: 100%;
+        margin: 10px auto;
+        color: white;
       }
     </style>
   </head>
 
   <body>
-    <h1></h1>
-    <div id="msg"></div>
-
-    <template id="templateTitle">
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </template>
-    <template id="templateRow">
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </template>
-
-    <script src="./practice.js"></script>
-    <script type="module">
-      import { $g, $c } from "./modules/helpers.js";
-
-      let fragment = new DocumentFragment();
-
-      let h1 = $c("h1");
-      h1.textContent = "DocumentFragment";
-      fragment.append(h1);
-      document.body.appendChild(fragment);
-
-      $g("h1").innerText = "Template";
-      $g("#msg").innerText = "模板的應用";
-
-      let productArray = ["iPhone", "iPad", "Mac", "Watch"];
-
-      let ul = $c("ul");
-      productArray.forEach((item) => {
-        let li = $c("li");
-        li.textContent = item;
-        ul.appendChild(li);
-      });
-      document.body.appendChild(ul);
-
-      let table, thead, tbody;
-
-      window.onload = () => {
-        table = $c("table");
-        thead = $c("thead");
-        tbody = $c("tbody");
-        table.appendChild(thead);
-        table.appendChild(tbody);
-        document.body.insertBefore(table, $g("#templateTitle"));
-
-        // const ipads = [
-        //   {
-        //     sku: "MW762",
-        //     price: 10900,
-        //     storage: "32GB",
-        //     description: "10.2 吋iPadWi-Fi機型32GB-⾦⾊"
-        //   },
-        // ];
-
-        let titleArray;
-        let dataArray;
-
-        ipads.forEach((item) => {
-          titleArray = Object.keys(item);
-          dataArray = Object.values(item);
-          addTbody(dataArray);
-        });
-
-        addThead(titleArray);
-
-        function addThead(titleArray) {
-          let titles = $g("templateTitle");
-          let cloneContent = templateTitle.content.cloneNode(true);
-          let ths = cloneContent.querySelectorAll("th");
-          titleArray.forEach((title, index) => {
-            ths[index].innerText = title;
-          });
-
-          thead.appendChild(cloneContent);
-        }
-
-        function addTbody(rowArray) {
-          let templateRow = $g("#templateRow");
-          let cloneContent = templateRow.content.cloneNode(true);
-          let tds = cloneContent.querySelectorAll("td");
-          rowArray.forEach((item, index) => {
-            if (index == 4) {
-              tds[index].innerHTML = `<img src="./${item}" alt="" class="src">`;
-            } else {
-              tds[index].innerText = item;
-            }
-          });
-          tbody.appendChild(cloneContent);
+    <h3>使用canvas实现九宫格切图的效果</h3>
+    <div class="mycanvas">
+      <canvas width="300" height="300" id="mycnavas"></canvas>
+    </div>
+    <div class="newpohoto">开始切图</div>
+    <div class="newcanvas">
+      <canvas width="100" height="100" id="img1"></canvas>
+      <canvas width="100" height="100" id="img2"></canvas>
+      <canvas width="100" height="100" id="img3"></canvas>
+      <canvas width="100" height="100" id="img4"></canvas>
+      <canvas width="100" height="100" id="img5"></canvas>
+      <canvas width="100" height="100" id="img6"></canvas>
+      <canvas width="100" height="100" id="img7"></canvas>
+      <canvas width="100" height="100" id="img8"></canvas>
+      <canvas width="100" height="100" id="img9"></canvas>
+    </div>
+    <script>
+      var canvas = document.getElementById("mycnavas"); //现将图片放上去
+      var cxt = mycnavas.getContext("2d");
+      var img = new Image();
+      let url = "https://i.pinimg.com/originals/0e/d2/1f/0ed21f71e21ddc279a4a23c1130c79f3.jpg";
+      img.src = url + '?' + new Date().getTime();
+      img.setAttribute('crossOrigin', '');
+      window.onload = function () {
+        cxt.drawImage(img, 0, 0, 300, 300); //画好图片的位置
+      };
+      var arr = []; //将切的图片存到数组里面
+      document.getElementsByClassName("newpohoto")[0].onclick = function () {
+        var q = 1;
+        for (var i = 0; i < 3; i++) {
+          for (var j = 0; j < 3; j++) {
+            var data = cxt.getImageData(j * 100, i * 100, 400, 100); //类似于“复制”功能
+            var img = document.getElementById(`img${q}`);
+            var newcxt = img.getContext("2d");
+            newcxt.putImageData(data, 0, 0); //类似“粘贴”功能
+            q++;
+          }
         }
       };
     </script>
