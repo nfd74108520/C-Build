@@ -3,77 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <style>
-      body {
-        text-align: center;
-      }
-
-      canvas {
-        border: 1px solid;
-      }
-
-      .newcanvas {
-        width: 316px;
-        height: 316px;
-        margin: auto;
-      }
-
-      .newpohoto,
-      .download {
-        width: 300px;
-        height: 40px;
-        line-height: 40px;
-        margin: auto;
-        background-color: cornflowerblue;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 10px auto;
-        color: white;
-      }
-    </style>
   </head>
 
   <body>
-    <h3>使用canvas实现九宫格切图的效果</h3>
-    <div class="mycanvas">
-      <canvas width="300" height="300" id="mycnavas"></canvas>
-    </div>
-    <div class="newpohoto">开始切图</div>
-    <div class="newcanvas">
-      <canvas width="100" height="100" id="img1"></canvas>
-      <canvas width="100" height="100" id="img2"></canvas>
-      <canvas width="100" height="100" id="img3"></canvas>
-      <canvas width="100" height="100" id="img4"></canvas>
-      <canvas width="100" height="100" id="img5"></canvas>
-      <canvas width="100" height="100" id="img6"></canvas>
-      <canvas width="100" height="100" id="img7"></canvas>
-      <canvas width="100" height="100" id="img8"></canvas>
-      <canvas width="100" height="100" id="img9"></canvas>
-    </div>
-    <script>
-      var canvas = document.getElementById("mycnavas"); //现将图片放上去
-      var cxt = mycnavas.getContext("2d");
-      var img = new Image();
-      let url = "./dog.jpg";
-      img.src = url;
+    <h1>Fetch使用Request物件</h1>
+    <input type="text" id="url" size="120" />
+    <button>Fecth抓取資料</button>
+    <div id="msg"></div>
+
+    <script type="module">
+      import { $g } from "./modules/helpers.js";
+
+      let url =
+        "https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json";
+      //   let url =
+      //     "https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json";
+      //let url ="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg";
       window.onload = function () {
-        cxt.drawImage(img, 0, 0, 300, 300); //画好图片的位置
+        // $g("input").value
+        $g("button").addEventListener("click", fetchRequestGet);
       };
-      var arr = []; //将切的图片存到数组里面
-      document.getElementsByClassName("newpohoto")[0].onclick = function () {
-        var q = 1;
-        for (var i = 0; i < 3; i++) {
-          for (var j = 0; j < 3; j++) {
-            var data = cxt.getImageData(j * 100, i * 100, 200, 100); //类似于“复制”功能
-            var img = document.getElementById(`img${q}`);
-            var newcxt = img.getContext("2d");
-            newcxt.putImageData(data, 0, 0); //类似“粘贴”功能
-            q++;
-          }
-        }
-      };
+
+      //Ex1
+      function fetchRequestGet() {
+        const request = new Request($g("input").value);
+        console.log(request);
+
+        fetch(request)
+          .then((response) => {
+              response.text();
+              let txt = response.text()
+            })
+          .then((result) => {
+              
+            $g("#msg").innerHTML = result;
+
+          });
+      }
+
+      //Ex2
+      function fetchRequestPost() {
+        let request = new Request(url, {
+          method: "POST",
+          body: '{"name":"George","email":"George@gmail.com"}',
+        });
+        fetch(request)
+          .then((response) => {
+            response.text();
+          })
+          .then((text) => {
+            $g("#msg").innerText = text;
+          })
+          .catch((ex) => {
+            $g("#msg").innerText = ex;
+          });
+      }
+
+      //Ex -
+      //url = "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB17hmpQ.img?h=746&w=1119&m=6&q=60&o=f&l=f";
     </script>
   </body>
 </html>

@@ -44,12 +44,55 @@
     <button type="button" class="btn btn-success" onclick="chooceGame(`god`)">
       神
     </button>
-    <button type="button" class="btn btn-success" onclick="chooceGame(`nothuman`)">
+    <button
+      type="button"
+      class="btn btn-success"
+      onclick="chooceGame(`nothuman`)"
+    >
       不是人
     </button>
 
     <div class="container" id="container"></div>
-    <canvas id="myCanvas"></canvas>
+
+    <div class="mycanvas">
+      <canvas width="300" height="300" id="mycnavas"></canvas>
+    </div>
+    <div class="newpohoto">切圖</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img1"></canvas>
+        </div>
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img2"></canvas>
+        </div>
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img3"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img4"></canvas>
+        </div>
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img5"></canvas>
+        </div>
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img6"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img7"></canvas>
+        </div>
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img8"></canvas>
+        </div>
+        <div class="col-4 border justify-content-center align-items-center">
+          <canvas width="100" height="100" id="img9"></canvas>
+        </div>
+      </div>
+    </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -57,7 +100,8 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"
     ></script>
+    <script src="./gameRule.js"></script>
     <script src="./game.js"></script>
-    <script src="./canvas.js"></script>
+    <script src="./canvas.js" crossorigin="use-credentials"></script>
   </body>
 </html>
