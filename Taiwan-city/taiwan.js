@@ -2,15 +2,10 @@ let cityUrl =
   "https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/AllData.json";
 fetch(cityUrl)
   .then((response) => {
-    return response.json();
+    return response.text();
   })
   .then((text) => {
-    let data = JSON.parse(text);
     console.log(text);
-    console.log("hi");
-  })
-  .catch((ex) => {
-    console.dir(ex);
   });
 
 // //Array陣列元素是Object - 簡單的Array結構-
