@@ -15,84 +15,98 @@
     <link rel="stylesheet" href="./game.css" />
   </head>
   <body>
-    <button type="button" class="btn btn-primary" onclick="boxRandom()">
-      打亂數字
-    </button>
-    <button type="button" class="btn btn-warning" onclick="autoRun()">
-      自動完成
-    </button>
-    <button type="button" class="btn btn-danger" onclick="gameReStart()">
-      復原
-    </button>
+    <br />
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col">
+          <button type="button" class="btn btn-primary" onclick="boxRandom()">
+            打亂數字
+          </button>
+          <button type="button" class="btn btn-warning" onclick="autoRun()">
+            自動完成
+          </button>
+          <button type="button" class="btn btn-danger" onclick="gameReTurn()">
+            復原
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="gameReStart()"
+          >
+            初始狀態
+          </button>
+        </div>
+        <div class="col-6">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="請輸入圖片網址"
+            id="url"
+          />
+        </div>
+        <div class="col-2">
+          <button class="btn btn-outline-success fs-6" onclick="urlCheck()">
+            更換圖片
+          </button>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-12">
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="chooceGame(`easy`)"
+          >
+            簡單
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="chooceGame(`middle`)"
+          >
+            普通
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="chooceGame(`hard`)"
+          >
+            困難
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="chooceGame(`hell`)"
+          >
+            地獄
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="chooceGame(`god`)"
+          >
+            神
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="chooceGame(`nothuman`)"
+          >
+            不是人
+          </button>
+        </div>
+      </div>
+    </div>
+
     <br /><br />
-    <button type="button" class="btn btn-success" onclick="chooceGame(`easy`)">
-      簡單
-    </button>
-    <button
-      type="button"
-      class="btn btn-success"
-      onclick="chooceGame(`middle`)"
-    >
-      普通
-    </button>
-    <button type="button" class="btn btn-success" onclick="chooceGame(`hard`)">
-      困難
-    </button>
-    <button type="button" class="btn btn-success" onclick="chooceGame(`hell`)">
-      地獄
-    </button>
-    <button type="button" class="btn btn-success" onclick="chooceGame(`god`)">
-      神
-    </button>
-    <button
-      type="button"
-      class="btn btn-success"
-      onclick="chooceGame(`nothuman`)"
-    >
-      不是人
-    </button>
 
     <div class="container" id="container"></div>
 
     <div class="mycanvas">
-      <canvas width="300" height="300" id="mycnavas"></canvas>
+      <canvas id="mycanvas"></canvas>
     </div>
     <div class="newpohoto">切圖</div>
-    <div class="container">
-      <div class="row">
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img1"></canvas>
-        </div>
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img2"></canvas>
-        </div>
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img3"></canvas>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img4"></canvas>
-        </div>
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img5"></canvas>
-        </div>
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img6"></canvas>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img7"></canvas>
-        </div>
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img8"></canvas>
-        </div>
-        <div class="col-4 border justify-content-center align-items-center">
-          <canvas width="100" height="100" id="img9"></canvas>
-        </div>
-      </div>
-    </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -102,6 +116,5 @@
     ></script>
     <script src="./gameRule.js"></script>
     <script src="./game.js"></script>
-    <script src="./canvas.js" crossorigin="use-credentials"></script>
   </body>
 </html>
