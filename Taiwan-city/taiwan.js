@@ -119,7 +119,7 @@ dataTotal.forEach((cityItem) => {
 
     //傳送FormData資料到指定的Server，將資料交由Server處理
     let request = new XMLHttpRequest();
-    request.open("POST", "https://www.codemagic.com.tw");
+    request.open("POST", "https://mujimono.azurewebsites.net/taiwan-city/");
     request.send(formData);
   }
 });
