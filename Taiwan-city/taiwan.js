@@ -2,9 +2,12 @@ let allCities = [];
 
 let cityObject = {};
 
-dataTotal.forEach((cityItem) => {
-  // console.log(cityItem);
+const citySelect = document.getElementById("city");
+const districtSelect = document.getElementById("district");
+const submitButton = document.querySelector("input[type=submit]");
+const msg = document.getElementById("msg");
 
+dataTotal.forEach((cityItem) => {
   allCities.push({
     id: `${allTrim(cityItem.CityEngName)}`,
     name: `${cityItem.CityName}`,
@@ -16,11 +19,6 @@ dataTotal.forEach((cityItem) => {
       district: `${areaItem.AreaName}`,
     });
   });
-
-  const citySelect = document.getElementById("city");
-  const districtSelect = document.getElementById("district");
-  const submitButton = document.querySelector("input[type=submit]");
-  const msg = document.getElementById("msg");
 
   window.onload = createSelectOptions;
 
@@ -54,8 +52,6 @@ dataTotal.forEach((cityItem) => {
   citySelect.onchange = citySelectedChange;
 
   function citySelectedChange(event) {
-    // console.log(citySelect.selectedOptions[0]);
-
     let cityValue = citySelect.selectedOptions[0].value;
     let cityText = citySelect.selectedOptions[0].text;
 
@@ -77,7 +73,6 @@ dataTotal.forEach((cityItem) => {
     //從Object[CityName]取得值，其值為陣列
     let districtArray = cityObject[cityValue];
     districtArray.forEach((item) => {
-      // console.log(item);
       let opt = document.createElement("option");
       opt.value = item.id;
       opt.text = item.district;
@@ -91,38 +86,34 @@ dataTotal.forEach((cityItem) => {
     let districtValue = districtSelect.selectedOptions[0].value;
     let districtText = districtSelect.selectedOptions[0].text;
 
-    // console.dir(districtSelect.selectedOptions[0]);
-
     if (cityValue != "" && districtValue != "") {
       msg.innerText =
         citySelect.selectedOptions[0].text +
         "," +
         districtSelect.selectedOptions[0].text;
-      console.log(cityText + ", " + districtText);
       submitButton.disabled = false;
     } else {
       msg.innerHTML = "";
       submitButton.disabled = true;
     }
   });
-
-  submitButton.addEventListener("click", submitData);
-
-  //Submit提交資料
-  function submitData() {
-    alert("你提交了資料");
-
-    //建立FormData
-    let formData = new FormData();
-    formData.append("city", citySelect.selectedOptions[0].value);
-    formData.append("district", districtSelect.selectedOptions[0].text);
-
-    //傳送FormData資料到指定的Server，將資料交由Server處理
-    let request = new XMLHttpRequest();
-    request.open("POST", "https://mujimono.azurewebsites.net/taiwan-city/");
-    request.send(formData);
-  }
 });
+submitButton.addEventListener("click", submitData);
+
+//Submit提交資料
+function submitData() {
+  alert("你提交了資料");
+
+  //建立FormData
+  let formData = new FormData();
+  formData.append("city", citySelect.selectedOptions[0].value);
+  formData.append("district", districtSelect.selectedOptions[0].text);
+
+  // 傳送FormData資料到指定的Server，將資料交由Server處理
+  let request = new XMLHttpRequest();
+  request.open("POST", "https://mujimono.azurewebsites.net/taiwan-city/");
+  request.send(formData);
+}
 
 function allTrim(string) {
   let newString = "";
