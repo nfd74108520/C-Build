@@ -46,19 +46,11 @@ function startRender(level) {
   mycanvas.setAttribute("height", `${choose * 100}`);
 
   mycxt.drawImage(img, 0, 0, choose * 100, choose * 100);
-  let photoChoose = photoTotal[level].rule.length;
+  photoChoose = photoTotal[level].rule.length;
   splitPhoto(photoChoose);
 }
 
 document.getElementsByClassName("newpohoto")[0].onclick = splitPhoto;
-
-function urlCheck() {
-  let url = document.getElementById("url");
-  img.src = url.value;
-  startRender(`middle`);
-
-  changeBox(photoRule);
-}
 
 //分割圖片
 function splitPhoto(level) {
@@ -211,15 +203,15 @@ function boxRandom() {
     length += item.length;
   });
   let mathArr = [];
-  for (let i = 0; i < 700; i++) {
+  for (let i = 0; i < 600; i++) {
     let random = Math.floor(Math.random() * (length - 1)) + 1;
     mathArr.push(random);
     randomStep.push(random);
   }
   mathArr.forEach((num) => {
     boxMove(num);
-    changeBox(photoRule);
   });
+  changeBox(photoRule);
 }
 
 //重新開始
