@@ -129,8 +129,8 @@ function boxRandom() {
   }
   mathArr.forEach((num) => {
     boxMove(num);
-    changeBox(gameRule);
   });
+  changeBox(gameRule);
 }
 
 //重新開始
@@ -153,11 +153,9 @@ function chooceGame(chooce) {
 //自動完成
 function autoRun() {
   let time = 1;
-  let copyStep = JSON.parse(JSON.stringify(autoStep));
-  console.log(autoStep);
   for (let i = autoStep.length - 1; i > -1; i--) {
     setTimeout(() => {
-      boxMove(copyStep[i]);
+      boxMove(autoStep[i]);
       changeBox(gameRule);
       if (i == 0) {
         autoStep = [];

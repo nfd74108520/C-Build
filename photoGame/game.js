@@ -236,16 +236,14 @@ function chooceGame(chooce) {
 //自動完成
 function autoRun() {
   let time = 1;
-  let copyStep = JSON.parse(JSON.stringify(autoStep));
-  console.log(copyStep);
   for (let i = autoStep.length - 1; i > -1; i--) {
     setTimeout(() => {
-      boxMove(copyStep[i].id);
+      boxMove(autoStep[i].id);
       changeBox(photoRule);
       if (i == 0) {
         autoStep = [];
       }
-    }, 50 * time);
+    }, 60 * time);
     time++;
   }
   randomStep = [];
