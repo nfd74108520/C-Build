@@ -237,6 +237,7 @@ function chooceGame(chooce) {
 function autoRun() {
   let time = 1;
   let copyStep = JSON.parse(JSON.stringify(autoStep));
+  console.log(copyStep);
   for (let i = autoStep.length - 1; i > -1; i--) {
     setTimeout(() => {
       boxMove(copyStep[i].id);
