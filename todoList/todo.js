@@ -93,4 +93,5 @@ function createDate(date) {
 
 function todoList() {
   console.log(event.target.innerText);
+  console.log(event.target.innerText);
 }
