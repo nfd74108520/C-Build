@@ -8,6 +8,12 @@ let displayMonth = document.getElementById("display-month");
 
 let displayDate = document.getElementById("display-date");
 
+let todoLIstStorage;
+
+localStorage.setItem("myCat", "Tom");
+var cat = localStorage.getItem("myCat");
+console.log(cat);
+
 let yearCount = 2020;
 let monthCount = 4;
 let monthArray = [
@@ -89,7 +95,7 @@ function createDate(date) {
       div.classList.add("text-success");
     }
 
-    if(i%3==0){
+    if (i % 3 == 0) {
       // div.classList.add("border-primary");
     }
 
@@ -107,5 +113,8 @@ function createDate(date) {
 }
 
 function todoList() {
-  console.log(event.target.innerText);
+  let modalBody = document.querySelector(".modal-body");
+  modalBody.innerText = event.target.innerText
 }
+
+function storageList() {}
