@@ -248,3 +248,25 @@ function autoRun() {
   }
   randomStep = [];
 }
+
+//逆序數
+
+const cal = (num) => {
+  let arr;
+  if (typeof num === "number") {
+    let strs = String(num);
+    arr = Array.from(strs, (str) => Number(str) || 0); // 安全处理，转换错误给0
+  } else arr = num;
+  let length = arr.length;
+  let reverse = 0;
+
+  for (let i = 0; i < length - 1; i++) {
+    let n = arr[i];
+    for (let j = i + 1; j < length; j++) {
+      let m = arr[j];
+      if (n > m) reverse += 1;
+    }
+  }
+
+  console.log(reverse);
+};
