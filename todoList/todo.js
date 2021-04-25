@@ -8,9 +8,8 @@ let displayMonth = document.getElementById("display-month");
 
 let displayDate = document.getElementById("display-date");
 
-let now = new Date();
-let yearCount = now.getFullYear()+1;
-let monthCount = now.getMonth() + 1;
+let yearCount = 2020;
+let monthCount = 4;
 let monthArray = [
   "一 月",
   "二 月",
@@ -26,7 +25,7 @@ let monthArray = [
   "十二 月",
 ];
 
-window.onload = changeYear();
+window.onload = changeYear(true);
 
 function changeYear(select) {
   if (select) {
