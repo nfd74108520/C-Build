@@ -73,13 +73,28 @@ function createDate(date) {
   for (let i = 0; i < date; i++) {
     let div = document.createElement("div");
     div.addEventListener("click", todoList);
+
+    let nowTime = new Date(yearCount, monthCount, i + 1);
+    let nowDay = nowTime.getDay();
     div.setAttribute(
       "class",
-      "col_7 text-center border py-3 btn btn-outline-secondary"
+      "col_7 text-start border btn btn-outline-secondary day-box fs-4"
     );
     div.setAttribute("data-bs-toggle", "modal");
     div.setAttribute("data-bs-target", "#exampleModal");
+
+    if (nowDay == 0) {
+      div.classList.add("text-danger");
+    } else if (nowDay == 6) {
+      div.classList.add("text-success");
+    }
+
+    if(i%3==0){
+      // div.classList.add("border-primary");
+    }
+
     div.innerText = i + 1;
+
     row.appendChild(div);
   }
 
@@ -92,6 +107,5 @@ function createDate(date) {
 }
 
 function todoList() {
-  console.log(event.target.innerText);
   console.log(event.target.innerText);
 }
