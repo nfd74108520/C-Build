@@ -8,11 +8,9 @@ let displayMonth = document.getElementById("display-month");
 
 let displayDate = document.getElementById("display-date");
 
-let testdate = new Date(2021, 0, 1);
-// console.log(testdate.getDay())
-
-let yearCount = 2020;
-let monthCount = 0;
+let now = new Date();
+let yearCount = now.getFullYear()+1;
+let monthCount = now.getMonth() + 1;
 let monthArray = [
   "一 月",
   "二 月",
@@ -28,7 +26,7 @@ let monthArray = [
   "十二 月",
 ];
 
-window.onload = changeYear;
+window.onload = changeYear();
 
 function changeYear(select) {
   if (select) {
@@ -36,8 +34,6 @@ function changeYear(select) {
   } else {
     displayYear.textContent = yearCount -= 1;
   }
-
-  monthCount = 0;
   changeMonth(false);
 }
 
@@ -71,9 +67,7 @@ function createDate(date) {
 
   for (let j = 0; j < firstDay; j++) {
     let div = document.createElement("div");
-    div.addEventListener("click", todoList);
     div.setAttribute("class", "col_7 py-3 border");
-
     row.appendChild(div);
   }
 
@@ -84,19 +78,17 @@ function createDate(date) {
       "class",
       "col_7 text-center border py-3 btn btn-outline-secondary"
     );
+    div.setAttribute("data-bs-toggle", "modal");
+    div.setAttribute("data-bs-target", "#exampleModal");
     div.innerText = i + 1;
-
     row.appendChild(div);
   }
 
   for (let k = 0; k < 6 - lastDay; k++) {
     let div = document.createElement("div");
-    div.addEventListener("click", todoList);
     div.setAttribute("class", "col_7 py-3 border");
-
     row.appendChild(div);
   }
-
   displayDate.appendChild(row);
 }
 
