@@ -4,12 +4,7 @@ let displayMonth = document.getElementById("display-month");
 
 let displayDate = document.getElementById("display-date");
 
-let todoLIstStorage = { id: 1, year: 2021, month: 12 };
-
-localStorage.setItem(2021, JSON.stringify(todoLIstStorage));
-var cat = JSON.parse(localStorage.getItem("2021"));
-console.dir(cat.month);
-
+let todoLIstStorage = {};
 let yearCount = 2020;
 let monthCount = 4;
 let monthArray = [
@@ -113,6 +108,8 @@ function todoList() {
   let modalTitle = document.querySelector(".modal-title");
   let modalBody = document.querySelector(".modal-body");
 
+  let todo = JSON.parse(localStorage.getItem(yearCount + 1));
+
   modalTitle.innerText =
     "行事曆 - " +
     yearCount +
@@ -121,7 +118,16 @@ function todoList() {
     "/" +
     event.target.innerText;
 
-  modalBody.innerText = "";
+  modalBody.innerText = todo[monthCount + 1][1] + '\n' + todo[monthCount + 1][2];
+  console.log(todo[monthCount + 1][1]);
 }
 
-function storageList() {}
+function storageList() {
+  todoLIstStorage[monthCount + 1] = { 1: "123", 2: "456", 3: "789" };
+
+  console.log(yearCount + 1);
+  console.log(monthCount + 1);
+  console.log();
+
+  localStorage.setItem(yearCount, JSON.stringify(todoLIstStorage));
+}
