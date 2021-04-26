@@ -1,18 +1,14 @@
-let lastYear = document.getElementById("btn-last");
-let nextYear = document.getElementById("btn-next");
 let displayYear = document.getElementById("display-year");
 
-let lastMonth = document.getElementById("btn-last");
-let nextMonth = document.getElementById("btn-next");
 let displayMonth = document.getElementById("display-month");
 
 let displayDate = document.getElementById("display-date");
 
-let todoLIstStorage;
+let todoLIstStorage = { id: 1, year: 2021, month: 12 };
 
-localStorage.setItem("myCat", "Tom");
-var cat = localStorage.getItem("myCat");
-console.log(cat);
+localStorage.setItem(2021, JSON.stringify(todoLIstStorage));
+var cat = JSON.parse(localStorage.getItem("2021"));
+console.dir(cat.month);
 
 let yearCount = 2020;
 let monthCount = 4;
@@ -31,7 +27,7 @@ let monthArray = [
   "十二 月",
 ];
 
-window.onload = changeYear(true);
+window.onload = changeMonth();
 
 function changeYear(select) {
   if (select) {
@@ -39,6 +35,7 @@ function changeYear(select) {
   } else {
     displayYear.textContent = yearCount -= 1;
   }
+  monthCount = 0;
   changeMonth(false);
 }
 
@@ -113,8 +110,18 @@ function createDate(date) {
 }
 
 function todoList() {
+  let modalTitle = document.querySelector(".modal-title");
   let modalBody = document.querySelector(".modal-body");
-  modalBody.innerText = event.target.innerText
+
+  modalTitle.innerText =
+    "行事曆 - " +
+    yearCount +
+    "/" +
+    (monthCount + 1) +
+    "/" +
+    event.target.innerText;
+
+  modalBody.innerText = "";
 }
 
 function storageList() {}
