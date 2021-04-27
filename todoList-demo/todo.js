@@ -3,7 +3,8 @@ let displayYear = document.getElementById("display-year");
 let displayMonth = document.getElementById("display-month");
 let addBtn = document.getElementById("addBtn");
 let displayDate = document.getElementById("display-date");
-
+let modalTitle = document.querySelector(".modal-title");
+let todoShow = document.getElementById("todoShow");
 let hrLine = document.getElementById("hrLine");
 let textArea = document.getElementById("textArea");
 let inputText = document.getElementById("inputText");
@@ -118,9 +119,19 @@ function createDate(date) {
 }
 
 function todoList() {
-  let modalTitle = document.querySelector(".modal-title");
-  let todoShow = document.getElementById("todoShow");
+  let todo = JSON.parse(localStorage.getItem(yearCount + 1));
+  dayCount = event.target.innerText;
+  modalTitle.innerText =
+    "行事曆 - " + yearCount + "/" + (monthCount + 1) + "/" + dayCount;
+
+  changeList();
+}
+
+function changeList() {
   todoShow.innerHTML = "";
+  let ul = document.createElement("ul");
+  ul.classList.add("list-group");
+  todoShow.appendChild(ul);
   todoLIstStorage = {};
   let data = JSON.parse(localStorage.getItem(yearCount));
   if (data != null) {
@@ -128,23 +139,6 @@ function todoList() {
       todoLIstStorage = data[monthCount + 1];
     }
   }
-  let ul = document.createElement("ul");
-  ul.classList.add("list-group");
-  todoShow.appendChild(ul);
-
-  let todo = JSON.parse(localStorage.getItem(yearCount + 1));
-
-  modalTitle.innerText =
-    "行事曆 - " +
-    yearCount +
-    "/" +
-    (monthCount + 1) +
-    "/" +
-    event.target.innerText;
-
-  dayCount = event.target.innerText;
-
-  console.log(todoLIstStorage[dayCount]);
 
   if (todoLIstStorage[dayCount] != undefined) {
     todoLIstStorage[dayCount].forEach((item, index) => {
@@ -236,6 +230,6 @@ function addTodo() {
 
   localStorage.setItem(yearCount, JSON.stringify(todoLIstStorage));
 
-  todoList();
+  changeList();
   leaveList();
 }
