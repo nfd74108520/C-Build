@@ -98,8 +98,14 @@ function createDate(date) {
       div.innerText = i + 1;
 
       let span = document.createElement("span");
+      if (todoLIstStorage[i + 1].length > 9) {
+        span.setAttribute("class", "badge bg-danger rounded-pill fs-6 my-1");
+      } else if (todoLIstStorage[i + 1].length > 4) {
+        span.setAttribute("class", "badge bg-warning rounded-pill fs-6 my-1");
+      } else {
+        span.setAttribute("class", "badge bg-primary rounded-pill fs-6 my-1");
+      }
       span.setAttribute("value", `${i + 1}`);
-      span.setAttribute("class", "badge bg-primary rounded-pill fs-6 my-1");
       span.innerText = todoLIstStorage[i + 1].length;
 
       div.appendChild(span);
@@ -131,7 +137,7 @@ function createDate(date) {
 function todoList() {
   let todo = JSON.parse(localStorage.getItem(yearCount + 1));
   dayCount = event.target.attributes.value.value;
-  console.log(event.target)
+  console.log(event.target);
   modalTitle.innerText =
     "行事曆 - " + yearCount + "/" + (monthCount + 1) + "/" + dayCount;
 
