@@ -140,7 +140,10 @@ function changeList() {
     }
   }
 
-  if (todoLIstStorage[dayCount] != undefined) {
+  if (
+    todoLIstStorage[dayCount] != undefined &&
+    todoLIstStorage[dayCount].length != 0
+  ) {
     todoLIstStorage[dayCount].forEach((item, index) => {
       let li = document.createElement("li");
       li.classList.add("list-group-item");
@@ -209,14 +212,16 @@ function addTodo() {
   }
 
   let liArray = document.querySelectorAll(".check");
-  let target;
+  let targetIndex = -1;
 
-  liArray.forEach((item) => {
+  liArray.forEach((item, index) => {
     if (item.classList.contains("active")) {
-      target = item;
+      targetIndex = index;
       item.classList.toggle("active");
     }
   });
+
+  console.log(targetIndex);
 
   if (todoLIstStorage[monthCount + 1] == null) {
     todoLIstStorage[monthCount + 1] = {};
@@ -226,7 +231,13 @@ function addTodo() {
     todoLIstStorage[monthCount + 1][dayCount] = [];
   }
 
-  todoLIstStorage[monthCount + 1][dayCount].push(inputText.value);
+  if (inputText.value != "") {
+    if (targetIndex != -1) {
+      todoLIstStorage[monthCount + 1][dayCount][targetIndex] = inputText.value;
+    } else {
+      todoLIstStorage[monthCount + 1][dayCount].push(inputText.value);
+    }
+  }
 
   localStorage.setItem(yearCount, JSON.stringify(todoLIstStorage));
 
