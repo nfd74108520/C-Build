@@ -90,11 +90,24 @@ function createDate(date) {
     let nowDay = nowTime.getDay();
     div.setAttribute(
       "class",
-      "col_7 text-start border btn btn-outline-secondary day-box fs-4"
+      "col_7 text-start border btn btn-outline-secondary day-box fs-4 d-flex justify-content-between align-items-start"
     );
+
     if (todoLIstStorage[i + 1] != undefined) {
       div.classList.add("border-primary");
+      div.innerText = i + 1;
+
+      let span = document.createElement("span");
+      span.setAttribute("value", `${i + 1}`);
+      span.setAttribute("class", "badge bg-primary rounded-pill fs-6 my-1");
+      span.innerText = todoLIstStorage[i + 1].length;
+
+      div.appendChild(span);
+    } else {
+      div.innerText = i + 1;
     }
+
+    div.setAttribute("value", `${i + 1}`);
     div.setAttribute("data-bs-toggle", "modal");
     div.setAttribute("data-bs-target", "#exampleModal");
 
@@ -103,9 +116,6 @@ function createDate(date) {
     } else if (nowDay == 6) {
       div.classList.add("text-success");
     }
-
-    div.innerText = i + 1;
-
     row.appendChild(div);
   }
 
@@ -120,7 +130,8 @@ function createDate(date) {
 
 function todoList() {
   let todo = JSON.parse(localStorage.getItem(yearCount + 1));
-  dayCount = event.target.innerText;
+  dayCount = event.target.attributes.value.value;
+  console.log(event.target)
   modalTitle.innerText =
     "行事曆 - " + yearCount + "/" + (monthCount + 1) + "/" + dayCount;
 
