@@ -6,11 +6,13 @@ let displayDate = document.getElementById("display-date");
 
 let hrLine = document.getElementById("hrLine");
 let textArea = document.getElementById("textArea");
+let inputText = document.getElementById("inputText");
 
 let todoLIstStorage = {};
 
-let yearCount = 2020;
+let yearCount = 2021;
 let monthCount = 4;
+let dayCount;
 let monthArray = [
   "一 月",
   "二 月",
@@ -56,6 +58,13 @@ function changeMonth(select) {
 
 function createDate(date) {
   displayDate.innerHTML = "";
+  todoLIstStorage = {};
+  let data = JSON.parse(localStorage.getItem(yearCount));
+  if (data != null) {
+    if (data[monthCount + 1] != undefined) {
+      todoLIstStorage = data[monthCount + 1];
+    }
+  }
 
   let firstTime = new Date(yearCount, monthCount, 1);
   let firstDay = firstTime.getDay();
@@ -82,6 +91,9 @@ function createDate(date) {
       "class",
       "col_7 text-start border btn btn-outline-secondary day-box fs-4"
     );
+    if (todoLIstStorage[i + 1] != undefined) {
+      div.classList.add("border-primary");
+    }
     div.setAttribute("data-bs-toggle", "modal");
     div.setAttribute("data-bs-target", "#exampleModal");
 
@@ -89,10 +101,6 @@ function createDate(date) {
       div.classList.add("text-danger");
     } else if (nowDay == 6) {
       div.classList.add("text-success");
-    }
-
-    if (i % 3 == 0) {
-      // div.classList.add("border-primary");
     }
 
     div.innerText = i + 1;
@@ -105,6 +113,7 @@ function createDate(date) {
     div.setAttribute("class", "col_7 py-3 border");
     row.appendChild(div);
   }
+
   displayDate.appendChild(row);
 }
 
@@ -112,6 +121,13 @@ function todoList() {
   let modalTitle = document.querySelector(".modal-title");
   let todoShow = document.getElementById("todoShow");
   todoShow.innerHTML = "";
+  todoLIstStorage = {};
+  let data = JSON.parse(localStorage.getItem(yearCount));
+  if (data != null) {
+    if (data[monthCount + 1] != undefined) {
+      todoLIstStorage = data[monthCount + 1];
+    }
+  }
   let ul = document.createElement("ul");
   ul.classList.add("list-group");
   todoShow.appendChild(ul);
@@ -126,38 +142,52 @@ function todoList() {
     "/" +
     event.target.innerText;
 
-  for (let i = 0; i < 5; i++) {
+  dayCount = event.target.innerText;
+
+  console.log(todoLIstStorage[dayCount]);
+
+  if (todoLIstStorage[dayCount] != undefined) {
+    todoLIstStorage[dayCount].forEach((item, index) => {
+      let li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.classList.add("check");
+      li.addEventListener("click", todoClick);
+
+      li.innerText = item;
+      ul.appendChild(li);
+    });
+  } else {
     let li = document.createElement("li");
     li.classList.add("list-group-item");
     li.classList.add("check");
     li.addEventListener("click", todoClick);
 
-    li.innerText = i + 1;
+    li.innerText = "無代辦事項";
     ul.appendChild(li);
   }
 }
 
-function fixList(e) {
-  let inputText = document.getElementById("inputText");
-
+function fixList() {
+  let target = event.target;
+  inputText.value = "";
   hrLine.setAttribute("class", "");
   textArea.setAttribute("class", "input-group");
   addBtn.setAttribute("class", "btn btn-success invisible");
 
-  inputText.innerText = e.innerText;
-}
-
-function storageList() {
-  todoLIstStorage[monthCount + 1] = { 1: "123", 2: "456", 3: "789" };
-
-  localStorage.setItem(yearCount, JSON.stringify(todoLIstStorage));
-  leaveList();
+  if (target != undefined && target.innerText != "無代辦事項") {
+    inputText.value = target.innerText;
+  } else {
+    inputText.value = "";
+  }
 }
 
 function leaveList() {
   hrLine.setAttribute("class", "d-none");
   textArea.setAttribute("class", "input-group d-none");
   addBtn.setAttribute("class", "btn btn-success visible");
+
+  let date = new Date(yearCount, monthCount + 1, 0).getDate();
+  createDate(date);
 }
 
 function todoClick() {
@@ -179,5 +209,33 @@ function todoClick() {
 }
 
 function addTodo() {
+  let data = JSON.parse(localStorage.getItem(yearCount));
+  if (data != null) {
+    todoLIstStorage = data;
+  }
+
+  let liArray = document.querySelectorAll(".check");
+  let target;
+
+  liArray.forEach((item) => {
+    if (item.classList.contains("active")) {
+      target = item;
+      item.classList.toggle("active");
+    }
+  });
+
+  if (todoLIstStorage[monthCount + 1] == null) {
+    todoLIstStorage[monthCount + 1] = {};
+  }
+
+  if (todoLIstStorage[monthCount + 1][dayCount] == null) {
+    todoLIstStorage[monthCount + 1][dayCount] = [];
+  }
+
+  todoLIstStorage[monthCount + 1][dayCount].push(inputText.value);
+
+  localStorage.setItem(yearCount, JSON.stringify(todoLIstStorage));
+
+  todoList();
   leaveList();
 }
