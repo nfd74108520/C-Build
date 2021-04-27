@@ -21,7 +21,7 @@
       .fs-7 {
         font-size: 50px;
       }
-      .fs-small{
+      .fs-small {
         font-size: 10px;
       }
       .col_7 {
@@ -52,9 +52,7 @@
         </div>
       </div>
       <div class="row">
-        <div
-          class="col-12 border d-flex justify-content-evenly p-0"
-        >
+        <div class="col-12 border d-flex justify-content-evenly p-0">
           <button id="month-last" onclick="changeMonth(false)" class="fs-5 btn">
             <<
           </button>
@@ -83,6 +81,8 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -93,18 +93,47 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onclick="leaveList()"
             ></button>
           </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
+          <div class="modal-body">
+            <div class="todoShow" id="todoShow"></div>
+            <div class="todoFix">
+              <hr class="d-none" id="hrLine" />
+              <div class="input-group d-none" id="textArea">
+                <span class="input-group-text">代辦清單</span>
+                <textarea
+                  class="form-control"
+                  aria-label="With textarea"
+                  id="inputText"
+                ></textarea>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  onclick="addTodo()"
+                >
+                  確認
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between">
             <button
               type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+              class="btn btn-success"
+              onclick="fixList()"
+              id="addBtn"
             >
-              關閉
+              新增
             </button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="storageList()">儲存</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              onclick="storageList()"
+            >
+              儲存
+            </button>
           </div>
         </div>
       </div>

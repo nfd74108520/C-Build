@@ -2,10 +2,16 @@ let allCities = [];
 
 let cityObject = {};
 
+let roadObject = {};
+
 const citySelect = document.getElementById("city");
 const districtSelect = document.getElementById("district");
+const roadSelect = document.getElementById("road");
+
 const submitButton = document.querySelector("input[type=submit]");
 const msg = document.getElementById("msg");
+
+console.log(dataTotal);
 
 dataTotal.forEach((cityItem) => {
   allCities.push({
@@ -16,7 +22,13 @@ dataTotal.forEach((cityItem) => {
   cityItem.AreaList.forEach((areaItem) => {
     cityObject[allTrim(cityItem.CityEngName)].push({
       id: `${areaItem.ZipCode}`,
-      district: `${areaItem.AreaName}`,
+      district: `${areaItem.AreaName} - ${areaItem.ZipCode}`,
+    });
+    roadObject[areaItem.ZipCode] = [];
+    areaItem.RoadList.forEach((roadItem) => {
+      roadObject[areaItem.ZipCode].push({
+        road: `${roadItem.RoadName}`,
+      });
     });
   });
 
@@ -48,8 +60,16 @@ dataTotal.forEach((cityItem) => {
 
   districtSelect.disabled = true;
 
+  let option4 = document.createElement("option");
+  option4.value = "";
+  option4.text = "---請選擇街道---";
+  roadSelect.add(option4, null);
+
+  roadSelect.disabled = true;
+
   //City選項變更事件
   citySelect.onchange = citySelectedChange;
+  districtSelect.onchange = districtSelectedChange;
 
   function citySelectedChange(event) {
     let cityValue = citySelect.selectedOptions[0].value;
@@ -66,6 +86,7 @@ dataTotal.forEach((cityItem) => {
     //如果未選擇City則return
     if (cityValue == "") {
       districtSelect.disabled = true;
+      roadSelect.disabled = true;
       msg.innerHTML = "";
       return;
     }
@@ -77,6 +98,35 @@ dataTotal.forEach((cityItem) => {
       opt.value = item.id;
       opt.text = item.district;
       districtSelect.add(opt);
+    });
+  }
+  
+  function districtSelectedChange(event) {
+    let districtValue = districtSelect.selectedOptions[0].value;
+    let districtText = districtSelect.selectedOptions[0].text;
+
+    //清除並重新建立District <select>
+    roadSelect.disabled = false;
+    roadSelect.innerHTML = "";
+    let option0 = document.createElement("option");
+    option0.value = "";
+    option0.text = "---請選擇街道---";
+    roadSelect.add(option0, null);
+
+    //如果未選擇district則return
+    if (districtValue == "") {
+      roadSelect.disabled = true;
+      msg.innerHTML = "";
+      return;
+    }
+
+    //從Object[districtName]取得值，其值為陣列
+    let roadArray = roadObject[districtValue];
+    roadArray.forEach((item) => {
+      let opt = document.createElement("option");
+      opt.value = item.id;
+      opt.text = item.road;
+      roadSelect.add(opt);
     });
   }
 
@@ -97,7 +147,26 @@ dataTotal.forEach((cityItem) => {
       submitButton.disabled = true;
     }
   });
+  
+  roadSelect.addEventListener("change", function () {
+    let districtValue = districtSelect.selectedOptions[0].value;
+    let districtText = districtSelect.selectedOptions[0].text;
+    let roadValue = roadSelect.selectedOptions[0].value;
+    let roadText = roadSelect.selectedOptions[0].text;
+
+    if (districtValue != "" && roadValue != "") {
+      msg.innerText =
+        districtSelect.selectedOptions[0].text +
+        "," +
+        roadSelect.selectedOptions[0].text;
+      submitButton.disabled = false;
+    } else {
+      msg.innerHTML = "";
+      submitButton.disabled = true;
+    }
+  });
 });
+
 submitButton.addEventListener("click", submitData);
 
 //Submit提交資料

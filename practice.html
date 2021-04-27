@@ -1,67 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
+</head>
 
-  <body>
-    <h1>Fetch使用Request物件</h1>
-    <input type="text" id="url" size="120" />
-    <button>Fecth抓取資料</button>
-    <div id="msg"></div>
+<body>
 
-    <script type="module">
-      import { $g } from "./modules/helpers.js";
+    <button id="btnXhr">XHR載入Pokemon & LoL JSON檔</button>
+    <button id="btnPromise">Promise載入Pokemon & LoL JSON檔</button>
 
-      let url =
-        "https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json";
-      //   let url =
-      //     "https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json";
-      //let url ="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg";
-      window.onload = function () {
-        // $g("input").value
-        $g("button").addEventListener("click", fetchRequestGet);
-      };
+    <script>
 
-      //Ex1
-      function fetchRequestGet() {
-        const request = new Request($g("input").value);
-        console.log(request);
+        let pokemonUrl = "https://raw.githubusercontent.com/apprunner/pokemon.json/master/pokedex.json";
+        let lolUrl = "https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json";
 
-        fetch(request)
-          .then((response) => {
-              response.text();
-              let txt = response.text()
-            })
-          .then((result) => {
-              
-            $g("#msg").innerHTML = result;
+        window.onload = function () {
+            document.querySelector("#btnXhr").addEventListener("click", function () {
+                xhrJson(pokemonUrl, lolUrl);
+            });
 
-          });
-      }
+            document.querySelector("#btnPromise").addEventListener("click", function () {
+                fetchJSON(pokemonUrl, lolUrl);
+            });
+        }
 
-      //Ex2
-      function fetchRequestPost() {
-        let request = new Request(url, {
-          method: "POST",
-          body: '{"name":"George","email":"George@gmail.com"}',
-        });
-        fetch(request)
-          .then((response) => {
-            response.text();
-          })
-          .then((text) => {
-            $g("#msg").innerText = text;
-          })
-          .catch((ex) => {
-            $g("#msg").innerText = ex;
-          });
-      }
+        function xhrJson(...args) {
+            let argArray = args;
+            let pokemon = argArray[0];
+            let lol = argArray[1];
 
-      //Ex -
-      //url = "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB17hmpQ.img?h=746&w=1119&m=6&q=60&o=f&l=f";
+            let xhr1 = new XMLHttpRequest();
+            xhr1.onload = function () {
+                console.log(this.responseText);  //this為XMLHttpRequest物件
+                alert("Pokemon JSON");
+            }
+
+            xhr1.open('GET', pokemon);
+            xhr1.send();
+
+            let xhr2 = new XMLHttpRequest();
+            xhr2.onload = function () {
+                let text = document.createTextNode(this.responseText);
+                document.body.appendChild(text);
+                alert("LOL JSON");
+            }
+
+            xhr2.open('GET', lol);
+            xhr2.send();
+        }
+
+        function fetchJSON(...args) {
+            let argArray = args;
+            let pokemon = argArray[0];
+            let lol = argArray[1];
+
+            console.log(pokemon, lol);
+
+            fetch(pokemon)
+                .then(response => response.json())
+                .then(result1 => {
+                    console.log(typeof result);
+                    console.log(result1);
+                    alert("Pokemon JSON");
+                })
+                .then(() => fetch(lol))
+                .then(response => response.text())
+                .then(result2 => {
+                    //console.log(typeof result2);
+                    let text = document.createTextNode(result2);
+                    document.body.appendChild(text);
+                    alert("LOL JSON");
+                })
+        }
     </script>
-  </body>
+</body>
+
 </html>
