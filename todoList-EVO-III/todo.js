@@ -94,7 +94,7 @@ function createDate(date) {
       "col_7 text-start border btn btn-outline-secondary day-box fs-4 d-flex justify-content-between align-items-start"
     );
 
-    if (todoLIstStorage[i + 1] != undefined) {
+    if (todoLIstStorage[i + 1] != undefined && todoLIstStorage[i + 1].length != 0) {
       div.classList.add("border-primary");
       div.innerText = i + 1;
 
