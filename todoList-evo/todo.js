@@ -8,6 +8,7 @@ let todoShow = document.getElementById("todoShow");
 let hrLine = document.getElementById("hrLine");
 let textArea = document.getElementById("textArea");
 let inputText = document.getElementById("inputText");
+let submitBtn = document.getElementById("submit");
 
 let todoLIstStorage = {};
 
@@ -163,6 +164,7 @@ function changeList() {
   ) {
     todoLIstStorage[dayCount].forEach((item, index) => {
       let li = document.createElement("li");
+      li.setAttribute("class", "fw-bold");
       li.classList.add("list-group-item");
       li.classList.add("check");
       li.addEventListener("click", todoClick);
@@ -172,23 +174,36 @@ function changeList() {
     });
   } else {
     let li = document.createElement("li");
+    li.setAttribute("class", "fs-6 fw-light");
     li.classList.add("list-group-item");
     li.classList.add("check");
     li.addEventListener("click", todoClick);
 
-    li.innerText = "無代辦事項";
+    li.innerText = "點擊 - 新增代辦事項";
     ul.appendChild(li);
   }
 }
 
-function fixList() {
+function fixList(type) {
   let target = event.target;
+  if (type == "create") {
+    submitBtn.textContent = "增加";
+    submitBtn.setAttribute("class", "btn btn-success");
+  } else {
+    if (target.innerText != "點擊 - 新增代辦事項") {
+      submitBtn.textContent = "修改";
+      submitBtn.setAttribute("class", "btn btn-danger");
+    } else {
+      submitBtn.textContent = "增加";
+      submitBtn.setAttribute("class", "btn btn-success");
+    }
+  }
   inputText.value = "";
   hrLine.setAttribute("class", "");
   textArea.setAttribute("class", "input-group");
   addBtn.setAttribute("class", "btn btn-success invisible");
 
-  if (target != undefined && target.innerText != "無代辦事項") {
+  if (target != undefined && target.innerText != "點擊 - 新增代辦事項") {
     inputText.value = target.innerText;
   } else {
     inputText.value = "";
