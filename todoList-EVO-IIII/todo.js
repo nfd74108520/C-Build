@@ -2,6 +2,7 @@ let displayYear = document.getElementById("display-year");
 
 let displayMonth = document.getElementById("display-month");
 let addBtn = document.getElementById("addBtn");
+let deleBtn = document.getElementById("deleBtn");
 let displayDate = document.getElementById("display-date");
 let modalTitle = document.querySelector(".modal-title");
 let todoShow = document.getElementById("todoShow");
@@ -94,7 +95,10 @@ function createDate(date) {
       "col_7 text-start border btn btn-outline-secondary day-box fs-4 d-flex justify-content-between align-items-start"
     );
 
-    if (todoLIstStorage[i + 1] != undefined && todoLIstStorage[i + 1].length != 0) {
+    if (
+      todoLIstStorage[i + 1] != undefined &&
+      todoLIstStorage[i + 1].length != 0
+    ) {
       div.classList.add("border-primary");
       div.innerText = i + 1;
 
@@ -140,7 +144,6 @@ function createDate(date) {
 function todoList() {
   let todo = JSON.parse(localStorage.getItem(yearCount + 1));
   dayCount = event.target.attributes.value.value;
-  console.log(event.target);
   modalTitle.innerText =
     "行事曆 - " + yearCount + "/" + (monthCount + 1) + "/" + dayCount;
 
@@ -192,14 +195,20 @@ function fixList(type) {
   let target = event.target;
   if (type == "create") {
     submitBtn.textContent = "增加";
-    submitBtn.setAttribute("class", "btn btn-success");
+    submitBtn.setAttribute("class", "btn btn-primary");
+    deleBtn.textContent = "取消";
+    deleBtn.setAttribute("class", "btn btn-secondary");
   } else {
     if (target.innerText != "點擊 - 新增代辦事項") {
       submitBtn.textContent = "修改";
       submitBtn.setAttribute("class", "btn btn-danger");
+      deleBtn.textContent = "刪除";
+      deleBtn.setAttribute("class", "btn btn-secondary");
     } else {
       submitBtn.textContent = "增加";
-      submitBtn.setAttribute("class", "btn btn-success");
+      submitBtn.setAttribute("class", "btn btn-primary");
+      deleBtn.textContent = "取消";
+      deleBtn.setAttribute("class", "btn btn-secondary");
     }
   }
   inputText.value = "";
@@ -246,6 +255,7 @@ function addTodo() {
   if (data != null) {
     todoLIstStorage = data;
   }
+  console.dir(todoLIstStorage);
 
   let liArray = document.querySelectorAll(".check");
   let targetIndex = -1;
@@ -256,8 +266,6 @@ function addTodo() {
       item.classList.toggle("active");
     }
   });
-
-  console.log(targetIndex);
 
   if (todoLIstStorage[monthCount + 1] == null) {
     todoLIstStorage[monthCount + 1] = {};
@@ -277,6 +285,30 @@ function addTodo() {
 
   localStorage.setItem(yearCount, JSON.stringify(todoLIstStorage));
 
+  changeList();
+  leaveList();
+}
+
+function deleteList() {
+  let content = event.target.innerText;
+  if (content == "刪除") {
+    let data = JSON.parse(localStorage.getItem(yearCount));
+    if (data != null) {
+      todoLIstStorage = data;
+    }
+
+    let liArray = document.querySelectorAll(".check");
+    let targetIndex = -1;
+
+    liArray.forEach((item, index) => {
+      if (item.classList.contains("active")) {
+        targetIndex = index;
+      }
+    });
+    todoLIstStorage[monthCount + 1][dayCount].splice(targetIndex, 1);
+
+    localStorage.setItem(yearCount, JSON.stringify(todoLIstStorage));
+  }
   changeList();
   leaveList();
 }
