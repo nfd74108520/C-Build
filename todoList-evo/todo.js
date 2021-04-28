@@ -99,10 +99,12 @@ function createDate(date) {
       div.innerText = i + 1;
 
       let span = document.createElement("span");
-      if (todoLIstStorage[i + 1].length > 9) {
+      if (todoLIstStorage[i + 1].length > 14) {
         span.setAttribute("class", "badge bg-danger rounded-pill fs-6 my-1");
-      } else if (todoLIstStorage[i + 1].length > 4) {
+      } else if (todoLIstStorage[i + 1].length > 9) {
         span.setAttribute("class", "badge bg-warning rounded-pill fs-6 my-1");
+      } else if (todoLIstStorage[i + 1].length > 4) {
+        span.setAttribute("class", "badge bg-success rounded-pill fs-6 my-1");
       } else {
         span.setAttribute("class", "badge bg-primary rounded-pill fs-6 my-1");
       }
