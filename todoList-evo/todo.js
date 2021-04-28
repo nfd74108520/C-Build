@@ -166,6 +166,7 @@ function changeList() {
       let li = document.createElement("li");
       li.setAttribute("class", "fw-bold");
       li.classList.add("list-group-item");
+      li.classList.add("list-group-item-action");
       li.classList.add("check");
       li.addEventListener("click", todoClick);
 
@@ -176,6 +177,7 @@ function changeList() {
     let li = document.createElement("li");
     li.setAttribute("class", "fs-6 fw-light");
     li.classList.add("list-group-item");
+    li.classList.add("list-group-item-action");
     li.classList.add("check");
     li.addEventListener("click", todoClick);
 
